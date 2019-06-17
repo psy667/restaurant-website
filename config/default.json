@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://admin:Fm1zjFevxKH87kdl@psy667-dsr-practice-whlqj.gcp.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "sl_myJwtSecret"
+}
