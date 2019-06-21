@@ -4,63 +4,21 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const config = require('config');
 const jwt = require('jsonwebtoken');
-const auth = require('../../middleware/auth');
+const status = require('../../config/statusCodes');
+// const auth = require('../../middleware/auth');
 
-
-// User Model
 const User = require('../../models/User');
 
 
-// @route   POST api/auth/signup
-// @desc    Register new user
-// @access  Public
-router.post('/signup', (req, res) => {
-  const { name, email, password } = req.body;
+const JWTSign = (userId, jwtSecret, options) => new Promise((resolve, reject) => {
+  jwt.sign(userId, jwtSecret, options, (err, token) => {
+    if (err) {
+      reject(err);
+      return null;
+    }
 
-  // Simple validation
-  if (!name || !email || !password) {
-    return res.status(400).json({ msg: 'Please enter all fields' });
-  }
-
-  // Check for existing user
-  User.findOne({ email })
-    .then((user) => {
-      if (user) return res.status(400).json({ msg: 'User already exists' });
-
-      const newUser = new User({
-        name,
-        email,
-        password,
-      });
-
-      // Create salt & hash
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;
-          newUser.save()
-            .then((user) => {
-              jwt.sign(
-                { id: user.id },
-                config.get('jwtSecret'),
-                { expiresIn: 3600 },
-                (err, token) => {
-                  if (err) throw err;
-                  res.json({
-                    token,
-                    user: {
-                      id: user.id,
-                      name: user.name,
-                      email: user.email,
-                    },
-                  });
-                },
-              );
-            });
-        });
-      });
-    });
-  return null;
+    return resolve({ token });
+  });
 });
 
 // @route   POST api/auth
@@ -69,48 +27,26 @@ router.post('/signup', (req, res) => {
 router.post('/', (req, res) => {
   const { email, password } = req.body;
 
-  // Simple validation
   if (!email || !password) {
-    return res.status(400).json({ msg: 'Please enter all fields' });
+    return res.status(status.BAD_REQUEST).json({ msg: 'Please enter all fields' });
   }
 
-  // Check for existing user
-  User.findOne({ email })
+  return User.findOne({ email })
     .then((user) => {
-      if (!user) return res.status(400).json({ msg: 'User Does not exist' });
+      if (!user) {
+        return res.status(status.NOT_FOUND).json({ msg: 'User Does not exist' });
+      }
+      const isMatch = bcrypt.compare(password, user.password);
+      return { isMatch, user };
+    })
+    .then(({ isMatch, user }) => {
+      if (!isMatch) {
+        return res.status(status.BAD_REQUEST).json({ msg: 'Invalid credentials' });
+      }
 
-      // Validate password
-      bcrypt.compare(password, user.password)
-        .then((isMatch) => {
-          if (!isMatch) return res.status(400).json({ msg: 'Invalid credentials' });
-
-          jwt.sign(
-            { id: user.id },
-            config.get('jwtSecret'),
-            { expiresIn: 3600 },
-            (err, token) => {
-              if (err) throw err;
-              res.json({
-                token,
-                user: {
-                  id: user.id,
-                  name: user.name,
-                  email: user.email,
-                },
-              });
-            },
-          );
-        });
-    });
-});
-
-// @route   GET api/auth/user
-// @desc    Get user data
-// @access  Private
-router.get('/user', auth, (req, res) => {
-  User.findById(req.user.id)
-    .select('-password')
-    .then(user => res.json(user));
+      return JWTSign({ id: user.id }, config.get('jwtSecret'), { expiresIn: 3600 });
+    })
+    .then(result => res.json(result));
 });
 
 module.exports = router;

@@ -1,5 +1,6 @@
 const express = require('express');
 const auth = require('../../middleware/auth');
+const status = require('../../config/statusCodes');
 
 const router = express.Router();
 
@@ -39,7 +40,7 @@ router.delete('/:id', auth, (req, res) => {
 
   Reserve.remove({ _id: id })
     .then(() => res.json({ success: true }))
-    .catch(err => res.status(404).json({ success: false, error: err }));
+    .catch(err => res.status(status.BAD_REQUEST).json({ success: false, error: err }));
 });
 
 
@@ -52,7 +53,7 @@ router.patch('/:id', auth, (req, res) => {
 
   Reserve.updateOne({ _id: id }, { $set: body })
     .then(item => res.json({ success: true, item }))
-    .catch(err => res.status(404).json({ success: false, error: err }));
+    .catch(err => res.status(status.BAD_REQUEST).json({ success: false, error: err }));
 });
 
 
