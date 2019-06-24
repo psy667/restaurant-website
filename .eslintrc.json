@@ -16,5 +16,8 @@
     "extends":"airbnb-base",
     "rules": {
         "semi": "error"
+    },
+    "globals": {
+      "window": true
     }
 }

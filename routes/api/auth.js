@@ -34,19 +34,21 @@ router.post('/', (req, res) => {
   return User.findOne({ email })
     .then((user) => {
       if (!user) {
-        return res.status(status.NOT_FOUND).json({ msg: 'User Does not exist' });
+        throw new Error('Неверный e-mail');
       }
       const isMatch = bcrypt.compare(password, user.password);
-      return { isMatch, user };
+
+      return isMatch;
     })
-    .then(({ isMatch, user }) => {
+    .then((isMatch) => {
       if (!isMatch) {
-        return res.status(status.BAD_REQUEST).json({ msg: 'Invalid credentials' });
+        throw new Error('Неверный пароль');
       }
 
-      return JWTSign({ id: user.id }, config.get('jwtSecret'), { expiresIn: 3600 });
+      return JWTSign({ id: '5d07cb3e25f98439080e6eec' }, config.get('jwtSecret'), { expiresIn: 7200 });
     })
-    .then(result => res.json(result));
+    .then(result => res.json(result))
+    .catch(err => res.status(status.BAD_REQUEST).json({ result: 'error', err: err.message }));
 });
 
 module.exports = router;
