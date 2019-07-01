@@ -1,8 +1,8 @@
-.modal{
+.modal {
   background: #0005;
 }
 
-.main-page-container{
+.main-page-container {
   background: #000;
   width: 100vw;
   height: 100vh;
@@ -11,7 +11,7 @@
   padding-top: 50px;
 }
 
-.main-page{
+.main-page {
   /* width: 100vw; */
   /* height: 100vh; */
   background-color: #00000090;
@@ -23,7 +23,7 @@
   color: #fff;
 }
 
-.nav{
+.nav {
   width: 100%;
   padding-top: 10px;
   display: flex;
@@ -31,18 +31,21 @@
   justify-content: flex-end;
   padding-right: 50px;
 }
-.nav a{
+
+.nav a {
   font-family: monospace;
   font-size: 16px;
   padding: 8px 16px;
   background: #0007;
   color: #fff;
 }
-.nav a.active{
+
+.nav a.active {
   background: #000;
   box-sizing: border-box;
 }
-.main-page{
+
+.main-page {
   /* height: calc(100vh - 50px); */
   height: 90vh;
   display: flex;
@@ -50,45 +53,47 @@
   align-items: center;
   flex-direction: column;
 }
-.main-page h1{
+
+.main-page h1 {
   font-size: 50px;
   font-weight: bold;
   font-kerning: 5px;
   letter-spacing: 5px;
   font-family: 'Times New Roman';
 }
-.main-page p{
+
+.main-page p {
   width: 300px;
   text-align: center;
   font-size: 20px;
   font-style: italic;
 }
-.main-page button{
+
+.main-page button {
   margin-top: 20px;
   font-family: monospace;
   text-transform: uppercase;
   background: #fff;
 }
 
-
-
-
-
-
-.meals .container{
+.meals .container {
   justify-content: space-between;
   flex-wrap: wrap;
   max-height: calc(100vh - 140px);
   overflow-y: scroll;
 }
-.meals h3{
+
+.meals h3 {
   font-weight: bold;
   margin-left: 15px;
 }
 
-.admin{
+.admin {}
 
-}
-.admin .table{
+.admin .table {
   margin-top: 40px;
+}
+
+.react-datepicker-wrapper, .react-datepicker__input-container{
+  width: 100%;
 }

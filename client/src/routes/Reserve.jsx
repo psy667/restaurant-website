@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
+
 class Reserve extends Component {
   constructor() {
     super();
     this.state = {
       name: '',
-      day: null,
-      count_of_guests: null,
+      day: '',
+      count_of_guests: 2,
       tel: '',
       email: ''
     };
@@ -14,6 +17,10 @@ class Reserve extends Component {
 
   handleInput = (type) => event => {
     this.setState({[type]: event.target.value})
+  }
+
+  handleInputDate = event => {
+    this.setState({day: event})
   }
 
   handleSubmit = (event) => {
@@ -34,7 +41,7 @@ class Reserve extends Component {
   }
   // #	Имя	Дата	Количество гостей	Телефон	E-mail	Статус
   render() {
-    return (<div>
+    return (<div className='container'>
       <h1>Резервирование столика</h1>
       <form className='addNewMealForm d-flex flex-wrap' onSubmit={this.handleSubmit}>
         <div className='column col-6 offset-3'>
@@ -49,11 +56,14 @@ class Reserve extends Component {
           </div>
           <div className="form-group">
             <label className='w-100'>Дата
-              <input
-                onChange={this.handleInput('day')}
-                value={this.state.day}
-                type="text"
-                className="form-control"/>
+                <DatePicker
+                  className='form-control'
+                  style={{width: '100%'}}
+                  selected={this.state.day}
+                  onChange={this.handleInputDate}
+                  showTimeSelect
+                  dateFormat="Pp"
+                />
             </label>
           </div>
           <div className="form-group">
