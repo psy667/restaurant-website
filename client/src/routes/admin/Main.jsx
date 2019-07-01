@@ -8,7 +8,7 @@ class Admin extends Component {
   constructor() {
     super();
     this.state = {
-      loggedIn: false,
+      loggedIn: true,
       mode: 'reserves',
       meals: [],
       reserves: []
@@ -16,31 +16,36 @@ class Admin extends Component {
   }
 
   getData(type){
-    const headers = {
-      'Content-type': 'application/json',
-      'x-auth-token': window.localStorage.getItem('token') || '',
-    };
+    // const headers = {
+    //   'Content-type': 'application/json',
+    //   'x-auth-token': window.localStorage.getItem('token') || '',
+    // };
 
-    axios.get(`/api/${type}`, {headers})
+    axios.get(`/api/${type}`, { validateStatus: false })
       .then((response) => {
-        console.log(2, response)
+        console.log(response);
+        if(response.status === 401){
+          this.redirectToAuth();
+          return null;
+        }
         const { data } = response;
         this.setState({ [type]: data });
       })
+      .catch(err => {
+        console.log('Ошибка при запросе:', err);
+      })
 
+  }
+
+  redirectToAuth(){
+    setTimeout(() => this.setState({ loggedIn: false }), 100);
   }
 
   componentDidMount() {
     this.getData('reserves');
     this.getData('meals');
-
   }
 
-  componentWillMount() {
-    if (window.localStorage.getItem('token')) {
-      this.setState({ loggedIn: true });
-    }
-  }
 
   redirect() {
     return this.state.loggedIn ? (
@@ -58,7 +63,7 @@ class Admin extends Component {
     }
 
     return (
-      <div>
+      <div className='admin container'>
         { this.redirect() }
         <h1>Панель управления</h1>
 

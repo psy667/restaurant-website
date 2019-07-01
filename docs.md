@@ -34,6 +34,7 @@ Method: POST
 URL: `/api/reserves`
 
 Params:
+- name
 - day
 - count_of_guests
 - tel

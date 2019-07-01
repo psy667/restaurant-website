@@ -4,8 +4,11 @@ const { Schema } = mongoose;
 
 const ReserveSchema = new Schema({
   day: {
-    type: Date,
+    type: String,
     required: true,
+  },
+  day: {
+    type: Date,
   },
   count_of_guests: {
     type: Number,
@@ -17,7 +20,6 @@ const ReserveSchema = new Schema({
   },
   email: {
     type: String,
-    required: true,
   },
   created_at: {
     type: Date,

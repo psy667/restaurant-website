@@ -20,16 +20,10 @@ class Meals extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const headers = {
-      'Content-type': 'application/json',
-      'x-auth-token': window.localStorage.getItem('token') || '',
-    };
-
     const body = { name: this.state.mealName, imageURL: this.state.mealPhoto, description: this.state.mealDescription };
     axios({
       method: 'post',
       url: '/api/meals',
-      headers: headers,
       data: body
     }).then(res => {
       console.log(res);

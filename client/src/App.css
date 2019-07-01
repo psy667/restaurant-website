@@ -1,3 +1,22 @@
 .modal{
   background: #0005;
 }
+
+#root{
+  width: 100vw;
+  height: 100vh;
+  background-color: #00000066;
+  background-blend-mode: darken;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/10/Saltwater-Halal-Restaurants-Singapore.png');
+}
+.nav{
+  width: 100%;
+  background: #222;
+  color: #fff;
+}
+.nav a{
+  color: #fff;
+}

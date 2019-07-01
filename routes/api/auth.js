@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const config = require('config');
 const jwt = require('jsonwebtoken');
 const status = require('../../config/statusCodes');
-// const auth = require('../../middleware/auth');
+const auth = require('../../middleware/auth');
 
 const User = require('../../models/User');
 
@@ -49,6 +49,10 @@ router.post('/', (req, res) => {
     })
     .then(result => res.json(result))
     .catch(err => res.status(status.BAD_REQUEST).json({ result: 'error', err: err.message }));
+});
+
+router.get('/', auth, (req, res) => {
+  res.json({ status: 'ok' });
 });
 
 module.exports = router;

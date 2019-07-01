@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 
 class Modal extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-
   render() {
     const {
-      title, body, state, close, action,
+      title, body, state, close,
     } = this.props;
     const styleModal = { display: state ? 'block' : 'none' };
     const cnModal = ['modal', state ? 'show' : 'fade'].join(' ');

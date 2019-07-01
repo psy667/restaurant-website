@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 
 class Reserves extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const renderItem = (item, i) => (
       <tr key={item._id}>

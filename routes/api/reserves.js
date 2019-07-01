@@ -21,6 +21,7 @@ router.get('/', auth, (req, res) => {
 // TODO: auth
 router.post('/', (req, res) => {
   const newReserve = new Reserve({
+    name: req.body.name,
     day: req.body.day,
     count_of_guests: req.body.count_of_guests,
     tel: req.body.tel,

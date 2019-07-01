@@ -1,0 +1,94 @@
+.modal{
+  background: #0005;
+}
+
+.main-page-container{
+  background: #000;
+  width: 100vw;
+  height: 100vh;
+  padding: 50px;
+  margin-top: -50px;
+  padding-top: 50px;
+}
+
+.main-page{
+  /* width: 100vw; */
+  /* height: 100vh; */
+  background-color: #00000090;
+  background-blend-mode: darken;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('https://www.maximalconcepts.com/wp-content/uploads/2016/11/MG_8993-1.jpg');
+  color: #fff;
+}
+
+.nav{
+  width: 100%;
+  padding-top: 10px;
+  display: flex;
+  margin-left: auto;
+  justify-content: flex-end;
+  padding-right: 50px;
+}
+.nav a{
+  font-family: monospace;
+  font-size: 16px;
+  padding: 8px 16px;
+  background: #0007;
+  color: #fff;
+}
+.nav a.active{
+  background: #000;
+  box-sizing: border-box;
+}
+.main-page{
+  /* height: calc(100vh - 50px); */
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.main-page h1{
+  font-size: 50px;
+  font-weight: bold;
+  font-kerning: 5px;
+  letter-spacing: 5px;
+  font-family: 'Times New Roman';
+}
+.main-page p{
+  width: 300px;
+  text-align: center;
+  font-size: 20px;
+  font-style: italic;
+}
+.main-page button{
+  margin-top: 20px;
+  font-family: monospace;
+  text-transform: uppercase;
+  background: #fff;
+}
+
+
+
+
+
+
+.meals .container{
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-height: calc(100vh - 140px);
+  overflow-y: scroll;
+}
+.meals h3{
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+.admin{
+
+}
+.admin .table{
+  margin-top: 40px;
+}
