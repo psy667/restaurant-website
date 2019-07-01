@@ -1,16 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
-
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.css';
+import './styles.css';
+
 import Main from './routes/Main';
 import Meals from './routes/Meals';
 import Auth from './routes/admin/Auth';
 import Admin from './routes/admin/Main';
 import Reserve from './routes/Reserve';
 import Contact from './routes/Contact';
-
-// import './App.css';
-import './styles.css';
 
 class App extends React.Component {
   componentWillMount() {

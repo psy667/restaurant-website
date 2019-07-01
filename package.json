@@ -15,14 +15,13 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
-    "concurrently": "^3.6.0",
     "config": "^3.0.1",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.5.0",
-    "mongoose": "^5.1.6",
-    "react-datepicker": "^2.7.0"
+    "mongoose": "^5.1.6"
   },
   "devDependencies": {
+    "concurrently": "^3.6.0",
     "babel-eslint": "^10.0.2",
     "nodemon": "^1.17.5"
   },

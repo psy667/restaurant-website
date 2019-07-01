@@ -16,14 +16,8 @@ class Admin extends Component {
   }
 
   getData(type){
-    // const headers = {
-    //   'Content-type': 'application/json',
-    //   'x-auth-token': window.localStorage.getItem('token') || '',
-    // };
-
     axios.get(`/api/${type}`, { validateStatus: false })
       .then((response) => {
-        console.log(response);
         if(response.status === 401){
           this.redirectToAuth();
           return null;
@@ -76,8 +70,8 @@ class Admin extends Component {
           </label>
         </div>
 
-        { this.state.mode === 'reserves' ? <Reserves data={this.state.reserves}/> : null }
-        { this.state.mode === 'meals' ? <Meals data={this.state.meals}/> : null }
+        { this.state.mode === 'reserves' ? <Reserves data={this.state.reserves} update={() => this.getData('reserves')}/> : null }
+        { this.state.mode === 'meals' ? <Meals data={this.state.meals} update={() => this.getData('meals')}/> : null }
       </div>
     );
   }

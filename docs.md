@@ -45,6 +45,14 @@ Access: Private
 Method: GET  
 URL: `/api/reserves`
 
+#### Изменение статуса резервирования
+Access: Private
+Method: Patch
+URL: `/api/reserves`
+
+Params:
+- status `waiting` || `confirm` || `reject`
+
 ### Вход
 Access: Public  
 Method: POST  

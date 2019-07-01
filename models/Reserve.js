@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const ReserveSchema = new Schema({
-  day: {
+  name: {
     type: String,
     required: true,
   },
@@ -24,6 +24,10 @@ const ReserveSchema = new Schema({
   created_at: {
     type: Date,
     default: Date.now,
+  },
+  status: {
+    type: String,
+    default: 'waiting',
   },
 });
 

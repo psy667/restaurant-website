@@ -28,12 +28,17 @@ class Meals extends Component {
     }).then(res => {
       console.log(res);
       this.setState({modalOpen: false, mealName: '', mealPhoto: '', mealDescription: ''});
-
+      this.props.update();
     })
   }
 
   handleInput = type => (e) => {
     this.setState({[type]: e.target.value});
+  }
+
+  handleDeleteMeal = id => e => {
+    axios.delete(`/api/meals/${id}`).then(r => console.log(r));
+    this.props.update()
   }
 
   render() {
@@ -44,7 +49,8 @@ class Meals extends Component {
       <div className="card-body">
         <h5 className="card-title">{item.name}</h5>
         <p className="card-text">{item.description}</p>
-        <a href="#" className="btn btn-primary">Редактировать</a>
+        <button className="btn btn-primary">Редактировать</button>
+        <button onClick={this.handleDeleteMeal(item._id)} className="btn btn-outline-danger ml-2">Удалить</button>
       </div>
     </div>);
 
@@ -81,6 +87,7 @@ class Meals extends Component {
         </div>
       </form>
     </div>);
+
 
     return (<div className='meals'>
       <button type="submit" className="btn btn-primary my-4" onClick={this.handleAddNewMeal}>Добавить новое блюдо</button>

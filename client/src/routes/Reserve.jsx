@@ -39,11 +39,13 @@ class Reserve extends Component {
 
     })
   }
+
+
   // #	Имя	Дата	Количество гостей	Телефон	E-mail	Статус
   render() {
-    return (<div className='container'>
+    return (<div className='container reserve'>
       <h1>Резервирование столика</h1>
-      <form className='addNewMealForm d-flex flex-wrap' onSubmit={this.handleSubmit}>
+      <form className='d-flex flex-wrap' onSubmit={this.handleSubmit}>
         <div className='column col-6 offset-3'>
           <div className="form-group">
             <label className='w-100'>Ваше имя
