@@ -13,7 +13,7 @@ class Meals extends Component {
     };
   }
 
-  handleAddNewMeal = () => {
+  handleAddNewMeal = (e) => {
     this.setState({ modalOpen: true });
   }
 
@@ -29,7 +29,7 @@ class Meals extends Component {
       console.log(res);
       this.setState({modalOpen: false, mealName: '', mealPhoto: '', mealDescription: ''});
       this.props.update();
-    })
+    });
   }
 
   handleInput = type => (e) => {
@@ -38,7 +38,7 @@ class Meals extends Component {
 
   handleDeleteMeal = id => e => {
     axios.delete(`/api/meals/${id}`).then(r => console.log(r));
-    this.props.update()
+    this.props.update();
   }
 
   render() {

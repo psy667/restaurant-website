@@ -27,7 +27,7 @@ class Admin extends Component {
       })
       .catch(err => {
         console.log('Ошибка при запросе:', err);
-      })
+      });
 
   }
 
@@ -48,13 +48,13 @@ class Admin extends Component {
   }
 
   handleChangeMode = (mode) => (e) => {
-    this.setState({mode})
+    this.setState({mode});
   }
 
   render() {
     const cnToggleButton = (mode) => {
-      return `btn btn-secondary ${this.state.mode === mode ? 'active' : ''}`
-    }
+      return `btn btn-secondary ${this.state.mode === mode ? 'active' : ''}`;
+    };
 
     return (
       <div className='admin container'>

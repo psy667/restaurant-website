@@ -17,6 +17,7 @@ function auth(req, res, next) {
   } catch (e) {
     res.status(status.UNAUTHORIZED).json({ msg: 'Token is not valid' });
   }
+  return null;
 }
 
 module.exports = auth;

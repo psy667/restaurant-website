@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router'
+import { Redirect } from 'react-router';
 
 class Auth extends Component {
   constructor() {
@@ -27,7 +27,7 @@ class Auth extends Component {
     })
     .catch(err => {
       console.log("error", err);
-    })
+    });
   }
 
   handleInput = type => e => {
@@ -37,7 +37,7 @@ class Auth extends Component {
 
   redirect = () => {
     return this.state.loggedIn ? (
-      <Redirect to="/admin/Admin"/>
+      <Redirect to='/admin/Admin'/>
     ) : null;
   }
 
