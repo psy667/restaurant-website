@@ -5,11 +5,11 @@ class Contact extends Component {
   constructor() {
     super();
     this.state = {
+      position: [51.6548, 39.1895],
+      address: 'ул. 20-летия Октября 90к',
+      tel: '+7-900-800-40-30',
+      email: 'admin@rossini-restaurant.com',
     };
-  }
-
-  componentDidMount() {
-
   }
 
   render() {
@@ -21,15 +21,15 @@ class Contact extends Component {
           <tbody>
             <tr>
               <th scope="row">Адрес:</th>
-              <td>ул. 20-летия Октября 90к</td>
+              <td>{this.state.address}</td>
             </tr>
             <tr>
               <th scope="row">Телефон:</th>
-              <td><a href='tel:+7-900-800-40-30'>+7-900-800-40-30</a></td>
+              <td><a href={`tel:${this.state.tel}`}>{this.state.tel}</a></td>
             </tr>
             <tr>
               <th scope="row">E-mail:</th>
-              <td><a href='mailto:admin@rossini-restaurant.com'>admin@rossini-restaurant.com</a></td>
+              <td><a href={`mailto:${this.state.email}`}>{this.state.email}</a></td>
             </tr>
             <tr>
               <th scope="row">Время работы:</th>
@@ -39,8 +39,8 @@ class Contact extends Component {
           </tbody>
         </table>
         <YMaps>
-          <Map width='100%' height='400px' defaultState={{ center: [51.6548, 39.1895], zoom: 16 }}>
-            <Placemark geometry={[51.6548, 39.1895]} properties={{ IconContent: 'Restaurant Rossini' }}/>
+          <Map width='100%' height='400px' defaultState={{ center: this.state.position, zoom: 16 }}>
+            <Placemark geometry={this.state.position} properties={{ IconContent: 'Restaurant Rossini' }}/>
           </Map>
         </YMaps>
         <img className="img-fluid my-4" alt="Вход в ресторан" src='https://iitsstella.files.wordpress.com/2015/08/imag3780.jpg'/>

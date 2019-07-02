@@ -43,13 +43,26 @@ class Auth extends Component {
 
   render() {
     return (
-      <div>
-
-        { this.redirect() }
-        <form onSubmit={this.handleSubmit}>
+      <div className='container'>
+      { this.redirect() }
+      <div className='card col-6 offset-3 mt-5'>
+      <form onSubmit={this.handleSubmit} className='my-4'>
+        <div class="form-group">
+          <label for="inputEmail">E-mail</label>
+          <input onChange={this.handleInput('email')} type='email' value={this.state.email} class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Введите email"/>
+        </div>
+        <div class="form-group">
+          <label for="inputPassword">Пароль</label>
+          <input onChange={this.handleInput('password')} type='password' value={this.state.password} class="form-control" id="inputPassword" placeholder="Пароль"/>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 mt-4">Войти</button>
+        </form>
+        { this.state.formMessage }
+        </div>
+        {/*<form onSubmit={this.handleSubmit}>
           <label>
             Логин:
-            <input onChange={this.handleInput('email')} type='text' value={this.state.email}></input>
+            <input onChange={this.handleInput('password')} type='password' value={this.state.password}></input>
           </label>
           <label>
             Пароль:
@@ -57,7 +70,7 @@ class Auth extends Component {
           </label>
           <button type='submit'>Войти</button>
         </form>
-        { this.state.formMessage }
+        { this.state.formMessage }*/}
       </div>
     );
   }

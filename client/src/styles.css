@@ -68,9 +68,9 @@
   font-style: italic;
 }
 
-.main-page button {
+.main-page .btn-reserve {
   margin-top: 20px;
-  font-family: monospace;
+  /* font-family: monospace; */
   text-transform: uppercase;
   background: #fff;
 }

@@ -49,7 +49,6 @@ class Meals extends Component {
       <div className="card-body">
         <h5 className="card-title">{item.name}</h5>
         <p className="card-text">{item.description}</p>
-        <button className="btn btn-primary">Редактировать</button>
         <button onClick={this.handleDeleteMeal(item._id)} className="btn btn-outline-danger ml-2">Удалить</button>
       </div>
     </div>);

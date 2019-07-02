@@ -74,6 +74,7 @@ class Reserve extends Component {
                 onChange={this.handleInput('count_of_guests')}
                 value={this.state.count_of_guests}
                 type="number"
+                min={2}
                 className="form-control"/>
             </label>
           </div>
