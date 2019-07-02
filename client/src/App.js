@@ -36,7 +36,7 @@ class App extends React.Component {
       <Router>
         <ul className="nav">
           <li className="nav-item">
-            <NavLink className='nav-link' exact="exact" to="/">
+            <NavLink className='nav-link' exact={true} to="/">
               Главная
             </NavLink>
           </li>
@@ -62,7 +62,7 @@ class App extends React.Component {
           </li>
         </ul>
 
-        <Route path="/" exact="exact" component={Main}/>
+        <Route path="/" exact={true} component={Main}/>
         <Route path="/meals/" component={Meals}/>
         <Route path="/contact/" component={Contact}/>
         <Route path="/reserve/" component={Reserve}/>

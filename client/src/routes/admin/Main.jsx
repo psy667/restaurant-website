@@ -17,7 +17,7 @@ class Admin extends Component {
 
   getData(type) {
     axios.get(`/api/${type}`, {validateStatus: false}).then((response) => {
-      if (response.status === 401) {
+      if (response.status === 401 || response.status === 400) {
         this.redirectToAuth();
         return null;
       }
@@ -61,7 +61,7 @@ class Admin extends Component {
 
       <div className="btn-group btn-group-toggle">
         <label className={cnToggleButton('reserves')}>
-          <input / type="radio" name='mode' onChange={this.handleChangeMode('reserves')}>
+          <input type="radio" name='mode' onChange={this.handleChangeMode('reserves')}/>
             Резервирования
           </label>
           <label className={cnToggleButton('meals')}>

@@ -17,12 +17,14 @@ class Auth extends Component {
     e.preventDefault();
     const {email, password} = this.state;
 
-    axios.post('/api/auth', {email, password}).then(response => {
+    axios.post('/api/auth', {email, password}, {validateStatus: false}).then(response => {
       console.log(response);
       if (response.data.result !== 'error') {
         localStorage.setItem('token', response.data.token);
         this.setState({formMessage: 'Вы успешно авторизировались'});
         this.setState({loggedIn: true});
+      } else {
+        this.setState({formMessage: response.data.err})
       }
     }).catch(err => {
       console.log("error", err);
@@ -45,15 +47,15 @@ class Auth extends Component {
       {this.redirect()}
       <div className='card col-6 offset-3 mt-5'>
         <form onSubmit={this.handleSubmit} className='my-4'>
-          <div class="form-group">
-            <label for="inputEmail">E-mail</label>
-            <input onChange={this.handleInput('email')} type='email' value={this.state.email} class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Введите email"/>
+          <div className="form-group">
+            <label htmlFor="inputEmail">E-mail</label>
+            <input onChange={this.handleInput('email')} type='email' value={this.state.email} className="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Введите email"/>
           </div>
-          <div class="form-group">
-            <label for="inputPassword">Пароль</label>
-            <input onChange={this.handleInput('password')} type='password' value={this.state.password} class="form-control" id="inputPassword" placeholder="Пароль"/>
+          <div className="form-group">
+            <label htmlFor="inputPassword">Пароль</label>
+            <input onChange={this.handleInput('password')} type='password' value={this.state.password} className="form-control" id="inputPassword" placeholder="Пароль"/>
           </div>
-          <button type="submit" class="btn btn-primary w-100 mt-4">Войти</button>
+          <button type="submit" className="btn btn-primary w-100 mt-4">Войти</button>
         </form>
         {this.state.formMessage}
       </div>

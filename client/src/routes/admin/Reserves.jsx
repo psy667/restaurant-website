@@ -39,8 +39,8 @@ class Reserves extends Component {
     </tr>);
 
     const renderMeals = () => {
-      const meals = this.props.data;
-
+      const meals = this.props.data || [];
+      console.log(meals);
       return (<table className="table">
         <thead>
           <tr>
