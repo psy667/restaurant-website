@@ -25,7 +25,6 @@ app.use('/api/meals', require('./routes/api/meals'));
 app.use('/api/reserves', require('./routes/api/reserves'));
 app.use('/api/auth', require('./routes/api/auth'));
 
-
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
