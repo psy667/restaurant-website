@@ -5,26 +5,32 @@ class Modal extends Component {
     const {
       title, body, state, close,
     } = this.props;
-    const styleModal = { display: state ? 'block' : 'none' };
-    const cnModal = ['modal', state ? 'show' : 'fade'].join(' ');
+    const styleModal = {
+      display: state
+        ? 'block'
+        : 'none',
+    };
+    const cnModal = [
+      'modal', state
+        ? 'show'
+        : 'fade',
+    ].join(' ');
 
-    return (
-      <div className={cnModal} style={styleModal} tabIndex="-1">
-        <div className="modal-dialog modal-dialog-centered" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title">{ title }</h5>
-              <button type="button" className="close" onClick={close}>
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body">
-              { body }
-            </div>
+    return (<div className={cnModal} style={styleModal} tabIndex="-1">
+      <div className="modal-dialog modal-dialog-centered" role="document">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title">{title}</h5>
+            <button type="button" className="close" onClick={close}>
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div className="modal-body">
+            {body}
           </div>
         </div>
       </div>
-    );
+    </div>);
   }
 }
 

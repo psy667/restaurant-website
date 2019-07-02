@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Modal from '../../utils/Modal';
 import axios from 'axios';
 
@@ -14,18 +14,18 @@ class Meals extends Component {
   }
 
   handleAddNewMeal = (e) => {
-    this.setState({ modalOpen: true });
+    this.setState({modalOpen: true});
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const body = { name: this.state.mealName, imageURL: this.state.mealPhoto, description: this.state.mealDescription };
-    axios({
-      method: 'post',
-      url: '/api/meals',
-      data: body
-    }).then(res => {
+    const body = {
+      name: this.state.mealName,
+      imageURL: this.state.mealPhoto,
+      description: this.state.mealDescription
+    };
+    axios({method: 'post', url: '/api/meals', data: body}).then(res => {
       console.log(res);
       this.setState({modalOpen: false, mealName: '', mealPhoto: '', mealDescription: ''});
       this.props.update();
@@ -43,8 +43,8 @@ class Meals extends Component {
 
   render() {
     const renderItem = item => (<div className="card m-3" style={{
-      width: '18rem',
-    }} key={item._id}>
+        width: '18rem'
+      }} key={item._id}>
       <img className="card-img-top" src={item.imageURL || 'https://img01.rl0.ru/eda/c620x415i/s2.eda.ru/StaticContent/Photos/150525210126/150601174518/p_O.jpg'} alt=""/>
       <div className="card-body">
         <h5 className="card-title">{item.name}</h5>
@@ -76,8 +76,8 @@ class Meals extends Component {
           <div className="form-group">
             <label className='w-100'>Краткое описание:<br/>
               <textarea onChange={this.handleInput('mealDescription')} value={this.state.mealDescription} className='w-100' style={{
-                height: 125,
-              }}></textarea>
+                  height: 125
+                }}></textarea>
             </label>
           </div>
         </div>
@@ -87,18 +87,10 @@ class Meals extends Component {
       </form>
     </div>);
 
-
     return (<div className='meals'>
       <button type="submit" className="btn btn-primary my-4" onClick={this.handleAddNewMeal}>Добавить новое блюдо</button>
       <h3 className='col-12 mt-5'>Список блюд:</h3>
-      <Modal
-          state={this.state.modalOpen}
-          title="Добавление нового блюда в меню."
-          body={addNewMealForm()}
-          close={() => this.setState({ modalOpen: false })}
-          action={() => console.log('hello world')}
-      />
-      {renderMeals()}
+      <Modal state={this.state.modalOpen} title="Добавление нового блюда в меню." body={addNewMealForm()} close={() => this.setState({modalOpen: false})} action={() => console.log('hello world')}/> {renderMeals()}
     </div>);
   }
 }

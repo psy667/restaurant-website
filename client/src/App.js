@@ -31,13 +31,12 @@ class App extends React.Component {
     }, err => Promise.reject(err));
   }
 
-
   render() {
     return (<div className="main-container">
       <Router>
         <ul className="nav">
           <li className="nav-item">
-            <NavLink className='nav-link' exact to="/">
+            <NavLink className='nav-link' exact="exact" to="/">
               Главная
             </NavLink>
           </li>
@@ -63,7 +62,7 @@ class App extends React.Component {
           </li>
         </ul>
 
-        <Route path="/" exact component={Main}/>
+        <Route path="/" exact="exact" component={Main}/>
         <Route path="/meals/" component={Meals}/>
         <Route path="/contact/" component={Contact}/>
         <Route path="/reserve/" component={Reserve}/>

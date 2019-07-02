@@ -17,7 +17,9 @@ const JWTSign = (userId, jwtSecret, options) => new Promise((resolve, reject) =>
       return null;
     }
 
-    return resolve({ token });
+    return resolve({
+      token,
+    });
   });
 });
 
@@ -25,13 +27,20 @@ const JWTSign = (userId, jwtSecret, options) => new Promise((resolve, reject) =>
 // @desc    Auth user
 // @access  Public
 router.post('/', (req, res) => {
-  const { email, password } = req.body;
+  const {
+    email,
+    password,
+  } = req.body;
 
   if (!email || !password) {
-    return res.status(status.BAD_REQUEST).json({ msg: 'Please enter all fields' });
+    return res.status(status.BAD_REQUEST).json({
+      msg: 'Please enter all fields',
+    });
   }
 
-  return User.findOne({ email })
+  return User.findOne({
+    email,
+  })
     .then((user) => {
       if (!user) {
         throw new Error('Неверный e-mail');
@@ -45,14 +54,23 @@ router.post('/', (req, res) => {
         throw new Error('Неверный пароль');
       }
 
-      return JWTSign({ id: '5d07cb3e25f98439080e6eec' }, config.get('jwtSecret'), { expiresIn: 7200 });
+      return JWTSign({
+        id: '5d07cb3e25f98439080e6eec',
+      }, config.get('jwtSecret'), {
+        expiresIn: 7200,
+      });
     })
     .then(result => res.json(result))
-    .catch(err => res.status(status.BAD_REQUEST).json({ result: 'error', err: err.message }));
+    .catch(err => res.status(status.BAD_REQUEST).json({
+      result: 'error',
+      err: err.message,
+    }));
 });
 
 router.get('/', auth, (req, res) => {
-  res.json({ status: 'ok' });
+  res.json({
+    status: 'ok',
+  });
 });
 
 module.exports = router;

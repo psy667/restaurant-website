@@ -11,7 +11,9 @@ const Reserve = require('../../models/Reserve');
 // @access Private
 router.get('/', auth, (req, res) => {
   Reserve.find()
-    .sort({ day: 1 })
+    .sort({
+      day: 1,
+    })
     .then(items => res.json(items));
 });
 
@@ -29,19 +31,34 @@ router.post('/', (req, res) => {
   });
 
   newReserve.save()
-    .then(item => res.json({ success: true, item }))
-    .catch(error => res.json({ success: false, ...error }));
+    .then(item => res.json({
+      success: true,
+      item,
+    }))
+    .catch(error => res.json({
+      success: false,
+      ...error,
+    }));
 });
 
 // @route   DELETE api/meals/:id
 // @desc    Delete A Meal
 // @access  Private
 router.delete('/:id', auth, (req, res) => {
-  const { id } = req.params;
+  const {
+    id,
+  } = req.params;
 
-  Reserve.remove({ _id: id })
-    .then(() => res.json({ success: true }))
-    .catch(err => res.status(status.BAD_REQUEST).json({ success: false, error: err }));
+  Reserve.remove({
+    _id: id,
+  })
+    .then(() => res.json({
+      success: true,
+    }))
+    .catch(err => res.status(status.BAD_REQUEST).json({
+      success: false,
+      error: err,
+    }));
 });
 
 
@@ -49,12 +66,26 @@ router.delete('/:id', auth, (req, res) => {
 // @desc    Update A Meal
 // @access  Private
 router.patch('/:id', auth, (req, res) => {
-  const { id } = req.params;
-  const { body } = req;
+  const {
+    id,
+  } = req.params;
+  const {
+    body,
+  } = req;
 
-  Reserve.updateOne({ _id: id }, { $set: body })
-    .then(item => res.json({ success: true, item }))
-    .catch(err => res.status(status.BAD_REQUEST).json({ success: false, error: err }));
+  Reserve.updateOne({
+    _id: id,
+  }, {
+    $set: body,
+  })
+    .then(item => res.json({
+      success: true,
+      item,
+    }))
+    .catch(err => res.status(status.BAD_REQUEST).json({
+      success: false,
+      error: err,
+    }));
 });
 
 
